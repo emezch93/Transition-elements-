@@ -1,0 +1,135 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry: Transition Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+           
+        }
+        .table-container {
+            display: table;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        .element-row {
+            display: table-row;
+        }
+        .element {
+            display: table-cell;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #007acc;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .element:hover {
+            background-color: #005f99;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            color: black;
+            padding: 5px;
+            border-radius: 5px;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
+        .element:hover .tooltip {
+            display: block;
+        }
+        .details-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hidden {
+            display: none;
+        }
+        .detail-container{
+          
+        }
+        
+       
+    </style>
+</head>
+<body>
+
+    <h1>Click on each element to display it's attributes </h1>
+
+    <div class="table-container">
+        <div class="element-row">
+            <div class="element" onclick="showDetails(21, 'Sc', 'Scandium', '1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s²', 'Non-colored', 'Electrolysis of Sc₂O₃', '+3', 'Used in aerospace')">Sc <span class="tooltip">1s² 2s² 2p⁶ 3s² 3p⁶ 3d¹ 4s²</span></div>
+            <div class="element" onclick="showDetails(22, 'Ti', 'Titanium', '1s² ... 3d² 4s²', 'Colored', 'Kroll process', '+4', 'Aerospace, implants')">Ti <span class="tooltip">1s² ... 3d² 4s²</span></div>
+            <div class="element" onclick="showDetails(23, 'V', 'Vanadium', '1s² ... 3d³ 4s²', 'Colored', 'Reduction of V₂O₅', '+5, +4', 'Steelmaking')">V <span class="tooltip">1s² ... 3d³ 4s²</span></div>
+            <div class="element" onclick="showDetails(24, 'Cr', 'Chromium', '1s² ... 3d⁵ 4s¹', 'Colored', 'Aluminothermic Reduction', '+6, +3', 'Stainless steel')">Cr <span class="tooltip">1s² ... 3d⁵ 4s¹</span></div>
+        </div>
+        <div class="element-row">
+            <div class="element" onclick="showDetails(25, 'Mn', 'Manganese', '1s² ... 3d⁵ 4s²', 'Colored', 'Reduction of MnO₂', '+7, +4, +2', 'Batteries')">Mn <span class="tooltip">1s² ... 3d⁵ 4s²</span></div>
+            <div class="element" onclick="showDetails(26, 'Fe', 'Iron', '1s² ... 3d⁶ 4s²', 'Colored', 'Blast Furnace', '+3, +2', 'Construction')">Fe <span class="tooltip">1s² ... 3d⁶ 4s²</span></div>
+            <div class="element" onclick="showDetails(27, 'Co', 'Cobalt', '1s² ... 3d⁷ 4s²', 'Colored', 'Reduction of Co₃O₄', '+2, +3', 'Jet engines')">Co <span class="tooltip">1s² ... 3d⁷ 4s²</span></div>
+        </div>
+        <div class="element-row">
+            <div class="element" onclick="showDetails(28, 'Ni', 'Nickel', '1s² ... 3d⁸ 4s²', 'Colored', 'Mond Process', '+2', 'Batteries, coins')">Ni <span class="tooltip">1s² ... 3d⁸ 4s²</span></div>
+            <div class="element" onclick="showDetails(29, 'Cu', 'Copper', '1s² ... 3d¹⁰ 4s¹', 'Colored', 'Electrolysis of CuSO₄', '+2, +1', 'Wiring')">Cu <span class="tooltip">1s² ... 3d¹⁰ 4s¹</span></div>
+            <div class="element" onclick="showDetails(30, 'Zn', 'Zinc', '1s² ... 3d¹⁰ 4s²', 'Non-colored', 'Roasting & Reduction of ZnS', '+2', 'Galvanization')">Zn <span class="tooltip">1s² ... 3d¹⁰ 4s²</span></div>
+        </div>
+    </div>
+
+    <div class="details-container hidden" id="details">
+        <h2 id="element-name">Click an element</h2>
+        <p><strong>Atomic Number:</strong> <span id="atomic-number">-</span></p>
+        <p><strong>Symbol:</strong> <span id="element-symbol">-</span></p>
+        <p><strong>Electronic Configuration:</strong> <span id="electronic-config">-</span></p>
+        <p><strong>Oxidation States:</strong> <span id="oxidation">-</span></p>
+        <p><strong>Color:</strong> <span id="color">-</span></p>
+        <p><strong>Extraction Method:</strong> <span id="extraction">-</span></p>
+        <p><strong>Uses:</strong> <span id="uses">-</span></p>
+    </div>
+    <div class="details-container">
+        <h2>Why are Scandium and Zinc Not Colored?</h2>
+        <p><strong>Scandium (Sc):</strong> In its +3 oxidation state (Sc³⁺), all 3d electrons are lost, leaving an empty d-orbital. Since d–d transitions require partially filled d-orbitals, no visible light absorption occurs, making Scandium compounds colorless.</p>
+        <p><strong>Zinc (Zn):</strong> In its +2 oxidation state (Zn²⁺), the 3d orbital is completely filled (3d¹⁰), meaning no electron transitions can occur. As a result, Zinc compounds are also colorless.</p>
+        <p>Colored transition metals have partially filled d-orbitals, allowing d–d transitions that absorb specific wavelengths of visible light, making them appear colored.</p>
+    </div>
+
+    <script>
+        function showDetails(number, symbol, name, config, color, extraction, oxidation, uses) {
+            document.getElementById("element-name").textContent = name;
+            document.getElementById("atomic-number").textContent = number;
+            document.getElementById("element-symbol").textContent = symbol;
+            document.getElementById("electronic-config").textContent = config;
+            document.getElementById("oxidation").textContent = oxidation;
+            document.getElementById("color").textContent = color;
+            document.getElementById("extraction").textContent = extraction;
+            document.getElementById("uses").textContent = uses;
+            document.getElementById("details").classList.remove("hidden");
+        }
+    </script>
+
+</body>
+</html>
+
+
+
