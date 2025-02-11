@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition elements </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .login-container {
+            margin: 20px auto;
+            width: 300px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .element-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .element-button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            background-color: lightblue;
+            font-size: 16px;
+        }
+        .element-details {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px;
+            width: 60%;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="togglePassword()">👁</button>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div class="element-container" id="element-container" style="display: none;">
+        <h2>Click on each elements to display it's attributes</h2>
+        <button class="element-button" onclick="showDetails('Sc')">Scandium (Sc)</button>
+        <button class="element-button" onclick="showDetails('Ti')">Titanium (Ti)</button>
+        <button class="element-button" onclick="showDetails('V')">Vanadium (V)</button>
+        <button class="element-button" onclick="showDetails('Cr')">Chromium (Cr)</button>
+        <button class="element-button" onclick="showDetails('Mn')">Manganese (Mn)</button>
+        <button class="element-button" onclick="showDetails('Fe')">Iron (Fe)</button>
+        <button class="element-button" onclick="showDetails('Co')">Cobalt (Co)</button>
+        <button class="element-button" onclick="showDetails('Ni')">Nickel (Ni)</button>
+        <button class="element-button" onclick="showDetails('Cu')">Copper (Cu)</button>
+        <button class="element-button" onclick="showDetails('Zn')">Zinc (Zn)</button>
+    </div>
+
+    <div class="element-details" id="element-details">
+        <h3 id="element-name"></h3>
+        <p id="atomic-number"></p>
+        <p id="oxidation-states"></p>
+        <p id="electronic-config"></p>
+        <p id="color-info"></p>
+        <p id="uses"></p>
+        <p id="extraction-method"></p>
+    </div>
+
+    <script>
+        const adminPassword = "admin123";  
+        const userPasswords = ["5215", "3342", "4345", "3472", "4922", "5151", "9447", "3333", "5555", "6678", "8282", "k122", "5337", "1122", "h563", "9010", "5557","4556", "0000", "2234",
+        ];
+
+        function togglePassword() {
+            let passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+
+        function login() {
+            let password = document.getElementById("password").value;
+            if (password === adminPassword || userPasswords.includes(password)) {
+                document.querySelector(".login-container").style.display = "none";
+                document.getElementById("element-container").style.display = "block";
+            } else {
+                alert("Invalid password!");
+            }
+        }
+
+        function showDetails(element) {
+            let details = {
+                "Sc": {
+                    name: "Scandium (Sc)", atomicNumber: 21, oxidation: "+3",
+                    config: "[Ar] 3d¹ 4s²", color: "Not colored (no unpaired d-electrons)",
+                    uses: "Used in aerospace materials and high-intensity lamps",
+                    extraction: "Extracted from thortveitite (Sc₂Si₂O₇), by electrolysis." 
+                },
+                "Ti": {
+                    name: "Titanium (Ti)", atomicNumber: 22, oxidation: "+2, +3, +4",
+                    config: "[Ar] 3d² 4s²", color: "Colored (Silver-gray)",
+                    uses: "Used in aircraft, surgical implants, and pigments",
+                    extraction: "Extracted from rutile (TiO₂) via Kroll process"
+                },
+                "V": {
+                    name: "Vanadium (V)", atomicNumber: 23, oxidation: "+2, +3, +4, +5",
+                    config: "[Ar] 3d³ 4s²", color: "Colored (Grayish-silver)",
+                    uses: "Used in steel alloys and catalysts",
+                    extraction: "Extracted from vanadinite (Pb₅(VO₄)₃Cl) via reduction with calcium"
+                },
+                "Cr": {
+                    name: "Chromium (Cr)", atomicNumber: 24, oxidation: "+2, +3, +6",
+                    config: "[Ar] 3d⁵ 4s¹", color: "Colored (Metallic gray)",
+                    uses: "Used in stainless steel and plating",
+                    extraction: "Extracted from chromite (FeCr₂O₄) via Aluminum in thermite process."
+                },
+                "Mn": {
+                    name: "Manganese (Mn)", atomicNumber: 25, oxidation: "+2, +4, +7",
+                    config: "[Ar] 3d⁵ 4s²", color: "Colored (Pinkish-gray)",
+                    uses: "Used in steelmaking and batteries",
+                    extraction: "Extracted from pyrolusite (MnO₂) "
+                },
+                "Fe": {
+                    name: "Iron (Fe)", atomicNumber: 26, oxidation: "+2, +3",
+                    config: "[Ar] 3d⁶ 4s²", color: "Colored (Silvery-gray)",
+                    uses: "Used in construction, tools, and hemoglobin",
+                    extraction: "Extracted from hematite (Fe₂O₃) using blast furnace"
+                },
+                "Co": {
+                    name: "Cobalt (Co)", atomicNumber: 27, oxidation: "+2, +3",
+                    config: "[Ar] 3d⁷ 4s²", color: "Colored (Blue-gray)",
+                    uses: "Used in magnets, alloys, and batteries",
+                    extraction: "Reduction of Co oxide with Hydrogen."
+                },
+                "Ni": {
+                    name: "Nickel (Ni)", atomicNumber: 28, oxidation: "+2, +3",
+                    config: "[Ar] 3d⁸ 4s²", color: "Colored (Silvery-white)",
+                    uses: "Used in coins, alloys, and plating",
+                    extraction: "Extracted from pentlandite ((Ni,Fe)₉S₈)"
+                },
+                "Cu": {
+                    name: "Copper (Cu)", atomicNumber: 29, oxidation: "+1, +2",
+                    config: "[Ar] 3d¹⁰ 4s¹", color: "Colored (Reddish-brown)",
+                    uses: "Used in wiring, pipes, and electronics",
+                    extraction: "Extracted from chalcopyrite (CuFeS₂)"
+                },
+                "Zn": {
+                    name: "Zinc (Zn)", atomicNumber: 30, oxidation: "+2",
+                    config: "[Ar] 3d¹⁰ 4s²", color: "Not colored (full d-orbital, no d-d transitions)",
+                    uses: "Used in galvanization, batteries, and alloys",
+                    extraction: "Extracted from sphalerite (ZnS) by Roasting and reduction (ZnS)"
+                }
+            };
+
+            let data = details[element];
+            document.getElementById("element-name").innerText = data.name;
+            document.getElementById("atomic-number").innerText = "Atomic Number: " + data.atomicNumber;
+            document.getElementById("oxidation-states").innerText = "Oxidation States: " + data.oxidation;
+            document.getElementById("electronic-config").innerText = "Electronic Configuration: " + data.config;
+            document.getElementById("color-info").innerText = data.color;
+            document.getElementById("uses").innerText = "Uses: " + data.uses;
+            document.getElementById("extraction-method").innerText = "Extraction: " + data.extraction;
+            document.getElementById("element-details").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
